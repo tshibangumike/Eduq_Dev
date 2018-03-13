@@ -1,0 +1,42 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <div class="card text-white bg-dark mb-3">
+            <div class="card-header">
+                Entités
+            </div>
+            <div class="card-body">
+                <table class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th>
+                                Nom
+                            </th>
+                            <th>
+                                Nom Affiché
+                            </th>
+                            <th>
+                                Nom Pluriel
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="entity in entities">
+                            <td>
+                                {{ entity.Name }}
+                            </td>
+                            <td>
+                                {{ entity.DisplayName }}
+                            </td>
+                            <td>
+                                {{ entity.PluralName }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer text-muted">
+
+            </div>
+        </div>
+    </div>
+</div>
