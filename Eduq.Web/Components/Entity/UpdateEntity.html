@@ -1,10 +1,77 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-</head>
-<body>
+﻿<form>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card border-light mb-3">
+                <div class="card-header">
+                    <div class="">
+                        <div class="float-left">
+                            <h4 class="text-muted font-weight-bold">Entités</h4>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="float-right">
+                            <button type="button" class="btn btn-labeled btn-dark m-1" ng-click="create()">
+                                <span class="btn-label">
+                                    <i class="fas fa-plus-square"></i>
+                                </span>
+                                Ajouter
+                            </button>
+                            <button type="button" class="btn btn-labeled btn-dark m-1" ng-click="read()">
+                                <span class="btn-label">
+                                    <i class="fas fa-pen-square"></i>
+                                </span>
+                                Modifier
+                            </button>
+                            <button type="button" class="btn btn-labeled btn-dark m-1" ng-click="delete()">
+                                <span class="btn-label">
+                                    <i class="fas fa-trash"></i>
+                                </span>
+                                Supprimer
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label ng-class="{ 'text-danger' : createVehicleForm.vehicle_Make.$invalid && FormHasBeenSubmitted }">
+                                Nom <span class="required"></span>
+                            </label>
+                            <input type="text"
+                            class="form-control"
+                            name="entity_Name"
+                            ng-model="entity.Name"
+                            ng-required="true"
+                            ng-class="{ 'is-invalid' : createVehicleForm.vehicle_Make.$invalid && FormHasBeenSubmitted }" />
+                            <div class="text-danger" ng-messages="createVehicleForm.vehicle_Make.$error" ng-if="createVehicleForm.vehicle_Make.$invalid && FormHasBeenSubmitted">
+                                <div ng-message="required">Veuillez fournir une valeur</div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Nom Affiche <span class="required"></span></label>
+                            <input type="text"
+                                   class="form-control"
+                                   name="entity_DisplayName"
+                                   ng-model="entity.DisplayName"
+                                   ng-required="true">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Nom Pluriel <span class="required"></span></label>
+                            <input type="text" 
+                                   name="entity_PluralName"
+                                   class="form-control" 
+                                   ng-model="entity.PluralName" 
+                                   ng-required="true">
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 
-</body>
-</html>
+

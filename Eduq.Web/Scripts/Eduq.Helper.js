@@ -66,11 +66,6 @@ eduq.Routes = {
                                 templateUrl: "/Components/Entity/CreateEntity.html",
                                 controller: "CreateEntityController",
                                 resolve: {
-                                    genders: [
-                                        "appService", function (appService) {
-                                            return appService.GetData("/Gender/GetGenders");
-                                        }
-                                    ]
                                 }
                             }
                         }
@@ -99,7 +94,7 @@ eduq.Routes = {
                 case "Update":
                     return {
                         name: "updateentity",
-                        url: "/updateentity",
+                        url: "/updateentity?entityid",
                         views: {
                             "": eduq.Routes.GetBaseRouteView(),
                             "toolbar@updateentity": eduq.Routes.GetToolbarRouteView(),
@@ -109,13 +104,8 @@ eduq.Routes = {
                                 controller: "UpdateEntityController",
                                 resolve: {
                                     entity: [
-                                        "appService", function (appService) {
+                                        "$stateParams", "appService", function ($stateParams, appService) {
                                             return appService.GetData("/Entity/GetEntityById", { entityId: $stateParams.entityid });
-                                        }
-                                    ],
-                                    genders: [
-                                        "appService", function (appService) {
-                                            return appService.GetData("/Gender/GetGenders");
                                         }
                                     ]
                                 }

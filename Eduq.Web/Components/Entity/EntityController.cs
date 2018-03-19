@@ -19,5 +19,19 @@ namespace Eduq.Web.Components.Entity
                 return Json(ex.Message, JsonRequestBehavior.AllowGet);
             }
         }
+
+        public JsonResult GetEntityById(Guid entityId)
+        {
+            try
+            {
+                var records = EntityService.QueryEntityId(entityId);
+                return Json(records, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(ex.Message, JsonRequestBehavior.AllowGet);
+            }
+        }
+
     }
 }

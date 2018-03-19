@@ -2,12 +2,11 @@
 angular.module("eduqApp")
     .controller("CreateEntityController",
     [
-        "$rootScope", "$scope", "appService", "genders",
-        function ($rootScope, $scope, appService, genders) {
+        "$rootScope", "$scope", "appService",
+        function ($rootScope, $scope, appService) {
 
             /*Variables - START*/
             $scope.entity = {};
-            $scope.genders = genders.data;
             $scope.isCollapsed = true;
             /*Variable - END*/
 
@@ -41,12 +40,31 @@ angular.module("eduqApp")
         function ($rootScope, $scope, appService, entities) {
 
             /*Variables - START*/
-
             $scope.entities = entities.data;
             $scope.selectedEntityIds = [];
             /*Variable - END*/
 
             /*Functions - START*/
+            this.init = function () {
+                //$("#table").DataTable({
+                //    "serverSide": true,
+                //    "processing": true,
+                //    "fixedHeader": true,
+                //    "ajax": {
+                //        "url": "/Entity/GetEntities",
+                //        "type": "get",
+                //        "datatype": "json"
+                //    },
+                //    "columns": [
+                //        { "data": "Name", "autoWidth": true },
+                //        { "data": "DisplayName", "autoWidth": true },
+                //        { "data": "PluralName", "autoWidth": true }
+                //    ]
+                //});
+            };
+            $scope.getSelectedRecords = function () {
+                return $scope.sele;ctedEntityIds
+            };
             $scope.selectRecord = function () {
 
                 if (arguments.length === 0) return null;
@@ -77,23 +95,24 @@ angular.module("eduqApp")
                     _entity = _.isEqual(arguments.length, 1) ? arguments[0] : null;
 
                 if (_.isNull(_entity))
-                    appService.NavigateTo("updateentity", { entityId: $scope.selectedEntityIds[0] });
+                    appService.NavigateTo("updateentity", { entityid: $scope.selectedEntityIds[0] });
                 else
-                    appService.NavigateTo("updateentity", { entityId: _entity.Id });
+                    appService.NavigateTo("updateentity", { entityid: _entity.Id });
 
             };
             /*Functions - END*/
+
+            this.init();
 
         }
     ])
     .controller("UpdateEntityController",
     [
-        "$rootScope", "$scope", "$filter", "appService", "entity",
-        function ($rootScope, $scope, $filter, appService, entity) {
+        "$rootScope", "$scope", "appService", "entity",
+        function ($rootScope, $scope, appService, entity) {
 
             /*Variables - START*/
             $scope.entity = entity.data;
-            $scope.genders = genders.data;
             /*Variable - END*/
 
             /*Functions - START*/
@@ -102,7 +121,7 @@ angular.module("eduqApp")
             };
             $scope.create = function () {
 
-                appService.NavigateTo("createappuser");
+                appService.NavigateTo("createentity");
 
             };
             $scope.processForm = function () {

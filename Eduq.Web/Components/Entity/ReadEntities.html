@@ -1,38 +1,100 @@
 ﻿<div class="row">
     <div class="col-md-12">
-        <div class="card text-white bg-dark mb-3">
+        <div class="card border-light mb-3">
             <div class="card-header">
-                Entités
+                <div class="">
+                    <div class="float-left">
+                        <h4 class="text-muted font-weight-bold">Entités</h4>
+                    </div>
+                </div>
+                <div class="">
+                    <div class="float-right">
+                        <button type="button" class="btn btn-labeled btn-primary m-1" ng-click="create()">
+                            <span class="btn-label">
+                                <i class="fas fa-plus-square"></i>
+                            </span>
+                            Ajouter
+                        </button>
+                        <button type="button" class="btn btn-labeled btn-primary m-1" ng-click="read()">
+                            <span class="btn-label">
+                                <i class="fas fa-pen-square"></i>
+                            </span>
+                            Modifier
+                        </button>
+                        <button type="button" class="btn btn-labeled btn-primary m-1" ng-click="delete()">
+                            <span class="btn-label">
+                                <i class="fas fa-trash"></i>
+                            </span>
+                            Supprimer
+                        </button>
+                    </div>
+                </div>
             </div>
             <div class="card-body">
-                <table class="table table-dark">
-                    <thead>
-                        <tr>
-                            <th>
-                                Nom
-                            </th>
-                            <th>
-                                Nom Affiché
-                            </th>
-                            <th>
-                                Nom Pluriel
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="entity in entities">
-                            <td>
-                                {{ entity.Name }}
-                            </td>
-                            <td>
-                                {{ entity.DisplayName }}
-                            </td>
-                            <td>
-                                {{ entity.PluralName }}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <!--<table id="table" class="table table-sm table-">
+        <thead class="thead-light">
+            <tr>
+                <th>
+                    Nom
+                </th>
+                <th>
+                    Nom Affiché
+                </th>
+                <th>
+                    Nom Pluriel
+                </th>
+            </tr>
+        </thead>
+    </table>-->
+                    <table class="table table-hover table-sm">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="all" ng-model="all">
+                                        <label class="custom-control-label" for="all"></label>
+                                    </div>
+                                </th>
+                                <th>
+                                    Nom
+                                </th>
+                                <th>
+                                    Nom Affiché
+                                </th>
+                                <th>
+                                    Nom Pluriel
+                                </th>
+                                <th>
+
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="entity in entities" ng-dblclick="read(entity )">
+                                <td style="width: 5%">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="{{ entity.Id }}"
+                                               ng-model="entity.Selected"
+                                               ng-change="selectRecord(entity)"
+                                               ng-checked="all">
+                                        <label class="custom-control-label" for="{{ entity.Id }}"></label>
+                                    </div>
+                                </td>
+                                <td style="width: 25%">
+                                    {{ entity.Name }}
+                                </td>
+                                <td style="width: 30%">
+                                    {{ entity.DisplayName }}
+                                </td>
+                                <td style="width: 30%">
+                                    {{ entity.PluralName }}
+                                </td>
+                                <td style="width: 10%"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <div class="card-footer text-muted">
 

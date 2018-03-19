@@ -1,18 +1,24 @@
-﻿using Eduq.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.SqlClient;
 
 namespace Eduq.Service
 {
     public class EntityService
     {
+
+        public static Dictionary<string, object> QueryEntityId(Guid entityId)
+        {
+            var records = SharedService.ExecuteGetSqlStoredProcedure("[eduq].[Entity_querybyentityid]",
+                new List<SqlParameter> { new SqlParameter("@entityId", entityId) });
+            if (records != null && records.Count == 1) return records[0];
+            return null;
+        }
         public static List<Dictionary<string, object>> QueryEntities()
         {
-            var entities = SharedService.ExecuteGetSqlStoredProcedure("[eduq].[Entity_queryall]", null);
-            return entities;
+            var records = SharedService.ExecuteGetSqlStoredProcedure("[eduq].[Entity_queryall]", null);
+            return records;
         }
+
     }
 }
