@@ -58,6 +58,7 @@ create table [eduq].[Field]
 (
 	Id uniqueidentifier primary key,
 	[Name] varchar(75),
+	DisplayName varchar(150),
 	[Description] varchar(300),
 	IsDefault bit,
 	DefaultValue varchar(300),
@@ -73,6 +74,7 @@ create table [eduq].[Form]
 (
 	Id uniqueidentifier primary key,
 	[Name] varchar(75),
+	DisplayName varchar(150),
 	[Description] varchar(300),
 	EntityId uniqueidentifier,
 	IsDefault bit,
@@ -117,6 +119,7 @@ create table [eduq].[View]
 (
 	Id uniqueidentifier primary key,
 	[Name] varchar(75),
+	DisplayName varchar(150),
 	[Description] varchar(300),
 	EntityId uniqueidentifier,
 	IsDefault bit,

@@ -1,73 +1,302 @@
-﻿<form>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card border-light mb-3">
-                <div class="card-header">
-                    <div class="">
-                        <div class="float-left">
-                            <h4 class="text-muted font-weight-bold">Entités</h4>
-                        </div>
-                    </div>
-                    <div class="">
-                        <div class="float-right">
-                            <button type="button" class="btn btn-labeled btn-dark m-1" ng-click="create()">
-                                <span class="btn-label">
-                                    <i class="fas fa-plus-square"></i>
-                                </span>
-                                Ajouter
-                            </button>
-                            <button type="button" class="btn btn-labeled btn-dark m-1" ng-click="read()">
-                                <span class="btn-label">
-                                    <i class="fas fa-pen-square"></i>
-                                </span>
-                                Modifier
-                            </button>
-                            <button type="button" class="btn btn-labeled btn-dark m-1" ng-click="delete()">
-                                <span class="btn-label">
-                                    <i class="fas fa-trash"></i>
-                                </span>
-                                Supprimer
-                            </button>
-                        </div>
+﻿<form name="updateEntityForm" ng-submit="processForm(updateEntityForm)" novalidate>
+    <div class="row m-1">
+        <div class="col-md-12 bg-white p-1">
+            <div class="float-right">
+                <div ng-include="'/Components/Shared/TopBarButtonsUpdateView.html'"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row m-1">
+        <div class="col-md-12 bg-white p-1">
+            <div class="card border-light">
+                <div class="card-header bg-white">
+                    <div class="float-left">
+                        <h5 class="text-muted font-weight-bold">Formulaire de vue d'un attribut</h5>
                     </div>
                 </div>
                 <div class="card-body">
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label ng-class="{ 'text-danger' : createVehicleForm.vehicle_Make.$invalid && FormHasBeenSubmitted }">
+                            <label ng-class="{ 'text-danger' : updateEntityForm.entity_Name.$invalid && formHasBeenSubmitted }">
                                 Nom <span class="required"></span>
                             </label>
                             <input type="text"
-                            class="form-control"
-                            name="entity_Name"
-                            ng-model="entity.Name"
-                            ng-required="true"
-                            ng-class="{ 'is-invalid' : createVehicleForm.vehicle_Make.$invalid && FormHasBeenSubmitted }" />
-                            <div class="text-danger" ng-messages="createVehicleForm.vehicle_Make.$error" ng-if="createVehicleForm.vehicle_Make.$invalid && FormHasBeenSubmitted">
+                                   class="form-control"
+                                   name="entity_Name"
+                                   ng-model="entity.Name"
+                                   ng-required="true"
+                                   ng-class="{ 'is-invalid' : updateEntityForm.entity_Name.$invalid && FormHasBeenSubmitted }" />
+                            <div class="text-danger" ng-messages="updateEntityForm.entity_Name.$error" ng-if="updateEntityForm.entity_Name.$invalid && formHasBeenSubmitted">
                                 <div ng-message="required">Veuillez fournir une valeur</div>
                             </div>
                         </div>
                         <div class="form-group col-md-6">
-                            <label>Nom Affiche <span class="required"></span></label>
+                            <label ng-class="{ 'text-danger' : updateEntityForm.entity_DisplayName.$invalid && formHasBeenSubmitted }">
+                                Nom Affiché <span class="required"></span>
+                            </label>
                             <input type="text"
                                    class="form-control"
                                    name="entity_DisplayName"
                                    ng-model="entity.DisplayName"
                                    ng-required="true">
+                            <div class="text-danger" ng-messages="updateEntityForm.entity_DisplayName.$error" ng-if="updateEntityForm.entity_DisplayName.$invalid && formHasBeenSubmitted">
+                                <div ng-message="required">Veuillez fournir une valeur</div>
+                            </div>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label>Nom Pluriel <span class="required"></span></label>
-                            <input type="text" 
+                            <label ng-class="{ 'text-danger' : updateEntityForm.entity_PluralName.$invalid && formHasBeenSubmitted }">
+                                Nom Pluriel <span class="required"></span>
+                            </label>
+                            <input type="text"
                                    name="entity_PluralName"
-                                   class="form-control" 
-                                   ng-model="entity.PluralName" 
+                                   class="form-control"
+                                   ng-model="entity.PluralName"
                                    ng-required="true">
+                            <div class="text-danger" ng-messages="updateEntityForm.entity_PluralName.$error" ng-if="updateEntityForm.entity_PluralName.$invalid && formHasBeenSubmitted">
+                                <div ng-message="required">Veuillez fournir une valeur</div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="card-footer text-muted">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row m-1">
+        <div class="col-md-12 bg-white p-1">
+            <div class="card border-light">
+                <div class="card-header bg-white" ng-click="collapseExpand(Tabs[0].Name)">
+                    <div class="float-left">
+
+                        <h5 class="text-muted font-weight-bold">
+                            <i class="fas fa-angle-right" ng-show="!Tabs[0].Show"></i>
+                            <i class="fas fa-angle-down" ng-show="Tabs[0].Show"></i>
+                            Information de la Bar de Menu
+                        </h5>
+                    </div>
+                </div>
+                <div class="card-body" ng-show="Tabs[0].Show">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>
+                                Afficher dans la Bar de Menu?
+                            </label>
+                            <div class="form-check">
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" 
+                                           id="entity_IsDisplayOnSideMenuYes" 
+                                           name="entity_IsDisplayOnSideMenu" 
+                                           class="custom-control-input" 
+                                           value="1"
+                                           ng-model="entity.IsDisplayOnSideMenu">
+                                    <label class="custom-control-label" for="entity_IsDisplayOnSideMenuYes">Oui</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" 
+                                           id="entity_IsDisplayOnSideMenuNo" 
+                                           name="entity_IsDisplayOnSideMenu" 
+                                           class="custom-control-input" 
+                                           value="0"
+                                           ng-model="entity.IsDisplayOnSideMenu">
+                                    <label class="custom-control-label" for="entity_IsDisplayOnSideMenuNo">Non</label>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Afficher sous </label>
+                            <select class="form-control" ng-model="entity.SideMenuParentItemId">
+                                <option ng-repeat="parentSideMenuItem in parentSideMenuItems" value="{{ parentSideMenuItem.Id }}">{{ parentSideMenuItem.Name }} </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Position</label>
+                            <input type="number"
+                                   name="entity_SideMenuItemPosition"
+                                   class="form-control"
+                                   ng-model="entity.SideMenuItemPosition">
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row m-1">
+        <div class="col-md-12 bg-white p-1">
+            <div class="card border-light">
+                <div class="card-header bg-white" ng-click="collapseExpand(Tabs[1].Name)">
+                    <div class="float-left">
+                        <h5 class="text-muted font-weight-bold">
+                            <i class="fas fa-angle-right" ng-show="!Tabs[1].Show"></i>
+                            <i class="fas fa-angle-down" ng-show="Tabs[1].Show"></i>
+                            Attributs
+                        </h5>
+                    </div>
+                    <div class="float-right" ng-show="Tabs[1].Show">
+                        <button type="button" class="btn btn-labeled btn-primary" ng-click="createField()">
+                            <span class="btn-label">
+                                <i class="fas fa-plus-square"></i>
+                            </span>
+                        </button>
+                        <button type="button" class="btn btn-labeled btn-primary" ng-click="readField()">
+                            <span class="btn-label">
+                                <i class="fas fa-pen-square"></i>
+                            </span>
+                        </button>
+                        <button type="button" class="btn btn-labeled btn-primary" ng-click="deleteField()">
+                            <span class="btn-label">
+                                <i class="fas fa-trash"></i>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body" ng-show="Tabs[1].Show">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-sm">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="all" ng-model="all">
+                                            <label class="custom-control-label" for="all"></label>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        Nom
+                                    </th>
+                                    <th>
+                                        Nom Affiché
+                                    </th>
+                                    <th>
+                                        Description
+                                    </th>
+                                    <th>
+                                        Type d'Attribut
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="field in fields" ng-dblclick="readField(field )">
+                                    <td style="width: 5%">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="{{ field.Id }}"
+                                                   ng-model="field.Selected"
+                                                   ng-change="selectFieldRecord(field)"
+                                                   ng-checked="all">
+                                            <label class="custom-control-label" for="{{ field.Id }}"></label>
+                                        </div>
+                                    </td>
+                                    <td style="width: 25%">
+                                        {{ field.Name }}
+                                    </td>
+                                    <td style="width: 30%">
+                                        {{ field.DisplayName }}
+                                    </td>
+                                    <td style="width: 30%">
+                                        {{ field.Description }}
+                                    </td>
+                                    <td style="width: 30%">
+                                        {{ field.FieldTypeName }}
+                                    </td>
+                                    <td style="width: 10%"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row m-1">
+        <div class="col-md-12 bg-white p-1">
+            <div class="card border-light">
+                <div class="card-header bg-white" ng-click="collapseExpand(Tabs[2].Name)">
+                    <div class="float-left">
+                        <h5 class="text-muted font-weight-bold">
+                            <i class="fas fa-angle-right" ng-show="!Tabs[2].Show"></i>
+                            <i class="fas fa-angle-down" ng-show="Tabs[2].Show"></i>
+                            Forms
+                        </h5>
+                    </div>
+                    <div class="float-right" ng-show="Tabs[2].Show">
+                        <button type="button" class="btn btn-labeled btn-primary" ng-click="createField()">
+                            <span class="btn-label">
+                                <i class="fas fa-plus-square"></i>
+                            </span>
+                        </button>
+                        <button type="button" class="btn btn-labeled btn-primary">
+                            <span class="btn-label">
+                                <i class="fas fa-pen-square"></i>
+                            </span>
+                        </button>
+                        <button type="button" class="btn btn-labeled btn-primary">
+                            <span class="btn-label">
+                                <i class="fas fa-trash"></i>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body" ng-show="Tabs[2].Show">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-sm">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="all" ng-model="all">
+                                            <label class="custom-control-label" for="all"></label>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        Nom
+                                    </th>
+                                    <th>
+                                        Nom Affiché
+                                    </th>
+                                    <th>
+                                        Description
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="form in forms" ng-dblclick="read(form)">
+                                    <td style="width: 5%">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="{{ form.Id }}"
+                                                   ng-model="form.Selected"
+                                                   ng-change="selectRecord(form)"
+                                                   ng-checked="all">
+                                            <label class="custom-control-label" for="{{ form.Id }}"></label>
+                                        </div>
+                                    </td>
+                                    <td style="width: 25%">
+                                        {{ form.Name }}
+                                    </td>
+                                    <td style="width: 30%">
+                                        {{ form.DisplayName }}
+                                    </td>
+                                    <td style="width: 30%">
+                                        {{ form.Description }}
+                                    </td>
+                                    <td style="width: 10%"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+
                 </div>
             </div>
         </div>

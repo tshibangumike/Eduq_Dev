@@ -12,6 +12,9 @@ angular.module("eduqApp")
                 eduq.Routes.SetRoutes("Entity", "Create"),
                 eduq.Routes.SetRoutes("Entity", "Read"),
                 eduq.Routes.SetRoutes("Entity", "Update"),
+                eduq.Routes.SetRoutes("Field", "Create"),
+                eduq.Routes.SetRoutes("Field", "Read"),
+                eduq.Routes.SetRoutes("Field", "Update"),
             ];
 
             states.forEach(function (state) {

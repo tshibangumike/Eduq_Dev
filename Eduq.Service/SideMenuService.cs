@@ -9,5 +9,10 @@ namespace Eduq.Service
             var records = SharedService.ExecuteGetSqlStoredProcedure("[eduq].[Sidemenuitem_queryall]", null);
             return records;
         }
+        public static List<Dictionary<string, object>> QueryParentSideMenuItems()
+        {
+            var records = SharedService.ExecuteGetSqlStoredProcedure("[eduq].[Sidemenuitem_queryparentsidemenuitem]", null);
+            return records;
+        }
     }
 }

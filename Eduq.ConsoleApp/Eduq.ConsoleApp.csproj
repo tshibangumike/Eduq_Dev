@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{87D55083-CED6-4D2B-A0E0-4194E791CBA7}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Eduq.Service</RootNamespace>
-    <AssemblyName>Eduq.Service</AssemblyName>
+    <ProjectGuid>{0AFF65AF-2833-4639-86DF-6D6C87EFADA9}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Eduq.ConsoleApp</RootNamespace>
+    <AssemblyName>Eduq.ConsoleApp</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -31,7 +33,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,21 +42,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppUserService.cs" />
-    <Compile Include="EntityService.cs" />
-    <Compile Include="FieldService.cs" />
-    <Compile Include="FieldTypeService.cs" />
-    <Compile Include="FormService.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SharedService.cs" />
-    <Compile Include="SideMenuService.cs" />
-    <Compile Include="SqlService.cs" />
-    <Compile Include="ViewService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Eduq.Model\Eduq.Model.csproj">
-      <Project>{8181CB6F-5538-48AD-B9A7-8328B48EFEBE}</Project>
+      <Project>{8181cb6f-5538-48ad-b9a7-8328b48efebe}</Project>
       <Name>Eduq.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eduq.Service\Eduq.Service.csproj">
+      <Project>{87d55083-ced6-4d2b-a0e0-4194e791cba7}</Project>
+      <Name>Eduq.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eduq.Sql\Eduq.Sql.csproj">
+      <Project>{be1d0d4e-9f92-4b0d-8a06-5f06c55f006d}</Project>
+      <Name>Eduq.Sql</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

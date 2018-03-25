@@ -10,9 +10,11 @@ namespace Eduq.Service
     public class SharedService
     {
         private static readonly string ConnectionString =
-            ConfigurationManager.ConnectionStrings["eduqContext"].ConnectionString;
+            ConfigurationManager.ConnectionStrings["tcaContext"].ConnectionString;
 
-        public static void ExecutePostSqlStoredProcedure(string storedProcedureName, List<SqlParameter> listSqlParameter)
+
+        public static int ExecutePostSqlStoredProcedure(string storedProcedureName,
+            List<SqlParameter> listSqlParameter)
         {
             using (var sqlConnection = new SqlConnection(ConnectionString))
             {
@@ -25,23 +27,34 @@ namespace Eduq.Service
                         Connection = sqlConnection,
                         CommandType = CommandType.StoredProcedure
                     };
+
+                    var resultParameter = command.CreateParameter();
+                    resultParameter.ParameterName = "@result";
+                    resultParameter.Direction = System.Data.ParameterDirection.Output;
+                    resultParameter.DbType = System.Data.DbType.Int32;
+                    resultParameter.Value = -1;
+
                     if (listSqlParameter != null)
                     {
                         foreach (var parameter in listSqlParameter)
                         {
                             command.Parameters.Add(parameter);
                         }
+                        command.Parameters.Add(resultParameter);
                     }
+
                     var result = command.ExecuteNonQuery();
-                    Console.WriteLine(result);
+                    return (int)resultParameter.Value;
                 }
                 catch (Exception ex)
                 {
                 }
             }
+            return -1;
         }
 
-        public static List<Dictionary<string, object>> ExecuteGetSqlStoredProcedure(string sqlQuery, List<SqlParameter> listSqlParameter)
+        public static List<Dictionary<string, object>> ExecuteGetSqlStoredProcedure(string sqlQuery,
+            List<SqlParameter> listSqlParameter)
         {
             var dataTableResult = new DataTable();
             using (var sqlConnection = new SqlConnection(ConnectionString))
@@ -62,6 +75,7 @@ namespace Eduq.Service
                             command.Parameters.Add(parameter);
                         }
                     }
+
                     var adapter = new SqlDataAdapter(command);
                     adapter.Fill(dataTableResult);
                     var records = (from DataRow dr in dataTableResult.Rows
@@ -72,10 +86,11 @@ namespace Eduq.Service
                 }
                 catch (Exception ex)
                 {
-                    //Log.Error(ex.Message);
                 }
             }
+
             return null;
         }
+
     }
 }

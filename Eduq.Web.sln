@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eduq.Service", "Eduq.Servic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eduq.Sql", "Eduq.Sql\Eduq.Sql.csproj", "{BE1D0D4E-9F92-4B0D-8A06-5F06C55F006D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eduq.ConsoleApp", "Eduq.ConsoleApp\Eduq.ConsoleApp.csproj", "{0AFF65AF-2833-4639-86DF-6D6C87EFADA9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{BE1D0D4E-9F92-4B0D-8A06-5F06C55F006D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE1D0D4E-9F92-4B0D-8A06-5F06C55F006D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE1D0D4E-9F92-4B0D-8A06-5F06C55F006D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AFF65AF-2833-4639-86DF-6D6C87EFADA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AFF65AF-2833-4639-86DF-6D6C87EFADA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AFF65AF-2833-4639-86DF-6D6C87EFADA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AFF65AF-2833-4639-86DF-6D6C87EFADA9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -2,13 +2,18 @@
 .wrapper {
 }
 
+.img-logo{
+    width: 40px;
+    height: 40px;
+}
+
 .side-bar {
     position: fixed;
     top: 0;
     left: 0;
-    width: 0;
+    width: 12%;
     height: 100%;
-    background: #323B44;
+    background: #354052;
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 0;
@@ -18,13 +23,14 @@
 .content {
     position: absolute;
     top: 0;
-    left: 0;
-    width: 100%;
+    left: 12%;
+    width: 88%;
+    height: 100%;
     padding: 0;
-    background: #FFF;
+    background: #E9E9E9;
     transition: margin-left .5s;
     transition: width .5s;
-    overflow-y: auto;
+    overflow-x: auto;
 }
 
 .main{
@@ -61,25 +67,43 @@
 }
 
 .menu-item-btn {
-    background-color: #36404A !important;
+    background-color: #354052 !important;
     font-weight: bold;
     font-size: 16px;
     color: #98A6AD;
+    cursor: default;
+    border-bottom: 1px solid #3b4950;
+}
+.menu-item-btn:hover {
+    color: #E9E9E9;
 }
 
 .menu-subitem-btn {
-    background-color: #36404A !important;
+    background-color: #354052 !important;
     font-size: 14px;
     color: #98A6AD;
+    cursor: default;
+    border-bottom: 1px solid #3b4950;
+}
+.menu-subitem-btn:hover {
+    color: #E9E9E9;
 }
 
-@media screen and (min-width: 1025px) {
+.navbar-brand{
+    color: #E9E9E9;
+}
 
+ul {
+    list-style-type: none;
+}
+
+
+
+@media screen and (min-width: 1025px) {
     /* 
       ##Device = Laptops, Desktops
       ##Screen = B/w 1025px to 1280px
     */
-
     .side-bar-out {
         width: 15%;
     }
@@ -93,7 +117,6 @@
         margin-left: 15% !important;
         width: 85%;
     }
-
 }
 
 @media screen and (max-width: 1024px){

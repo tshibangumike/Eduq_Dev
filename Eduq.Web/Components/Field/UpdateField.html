@@ -1,10 +1,125 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-</head>
-<body>
+﻿<form name="createAttributForm" ng-submit="processForm(createAttributForm)" novalidate>
+    <div class="row m-1">
+        <div class="col-md-12 bg-white p-1">
+            <div class="float-right">
+                <div ng-include="'/Components/Shared/TopBarButtonsCreateView.html'"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row m-1">
+        <div class="col-md-12 bg-white p-1">
+            <div class="card border-light">
+                <div class="card-header bg-white">
+                    <div class="float-left">
+                        <h5 class="text-muted font-weight-bold">Formulaire d'ajout d'un attribut</h5>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label ng-class="{ 'text-danger' : createAttributForm.field_EntityId.$invalid && formHasBeenSubmitted }">
+                                Entité <span class="required"></span>
+                            </label>
+                            <input type="text"
+                                   class="form-control"
+                                   name="field_EntityId"
+                                   ng-model="field.EntityName"
+                                   ng-required="true"
+                                   ng-disabled="true"
+                                   ng-class="{ 'is-invalid' : createAttributForm.field_EntityId.$invalid && formHasBeenSubmitted }" />
+                            <div class="text-danger" ng-messages="createAttributForm.field_EntityId.$error" ng-if="createAttributForm.field_EntityId.$invalid && formHasBeenSubmitted">
+                                <div ng-message="required">Veuillez fournir une valeur</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label ng-class="{ 'text-danger' : createAttributForm.field_Name.$invalid && formHasBeenSubmitted }">
+                                Nom <span class="required"></span>
+                            </label>
+                            <input type="text"
+                                   class="form-control"
+                                   name="field_Name"
+                                   ng-model="field.Name"
+                                   ng-required="true"
+                                   ng-class="{ 'is-invalid' : createAttributForm.field_Name.$invalid && formHasBeenSubmitted }" />
+                            <div class="text-danger" ng-messages="createAttributForm.field_Name.$error" ng-if="createAttributForm.field_Name.$invalid && formHasBeenSubmitted">
+                                <div ng-message="required">Veuillez fournir une valeur</div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Nom Affiché <span class="required"></span></label>
+                            <input type="text"
+                                   class="form-control"
+                                   name="field_DisplayName"
+                                   ng-model="field.DisplayName"
+                                   ng-required="true"
+                                   ng-class="{ 'is-invalid' : createAttributForm.field_Name.$invalid && formHasBeenSubmitted }" />
+                            <div class="text-danger"
+                                 ng-messages="createAttributForm.field_DisplayName.$error"
+                                 ng-if="createAttributForm.field_DisplayName.$invalid && formHasBeenSubmitted">
+                                <div ng-message="required">Veuillez fournir une valeur</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label ng-class="{ 'text-danger' : createAttributForm.field_FieldTypeId.$invalid && formHasBeenSubmitted }">
+                                Type d'Attribut <span class="required"></span>
+                            </label>
+                            <input type="text"
+                                   class="form-control"
+                                   name="field_DefaultValue"
+                                   ng-model="field.FieldTypeName"
+                                   ng-required="true"
+                                   ng-disabled="true">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Valeur par Defaut</label>
+                            <input type="text"
+                                   class="form-control"
+                                   name="field_DefaultValue"
+                                   ng-model="field.DefaultValue">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Niveau d'Exigence</label>
+                            <select type="text"
+                                    class="form-control"
+                                    name="field_isRequired"
+                                    ng-model="field.IsRequired" convert-to-number>
+                                <option value="false">Optionelle</option>
+                                <option value="true">Obligatoire</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6" ng-if="selectedFieldType.Name == 'Recherche'">
+                            <label ng-class="{ 'text-danger' : createAttributForm.field_LookupEntityName.$invalid && formHasBeenSubmitted }">
+                                Entité de Recherche <span class="required"></span>
+                            </label>
+                            <input type="text"
+                                    class="form-control"
+                                    name="field_LookupEntityName"
+                                    ng-model="field.LookupEntityName"
+                                    ng-required="true"
+                                    ng-disabled="true">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Description</label>
+                            <textarea class="form-control"
+                                      name="field_Description"
+                                      ng-model="field.Description">
+                            </textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 
-</body>
-</html>
+

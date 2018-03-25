@@ -44,7 +44,8 @@ angular.module("eduqApp")
             };
 
             $scope.getSideMenuItems = function () {
-                return _.filter($scope.sideMenuItems, function (x) { return _.isEqual(x.IsParent, "True"); });
+                return _.uniqBy($scope.sideMenuItems, "ParentName");
+                //_.filter($scope.sideMenuItems, function (x) { return _.isEqual(x.IsParent, "True"); });
             };
 
             $scope.getSubSideMenuItems = function () {

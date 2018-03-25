@@ -124,6 +124,9 @@
     <Content Include="Components\Form\UpdateForm.html" />
     <Content Include="Components\Home\Home.html" />
     <Content Include="Components\Home\HomeController.js" />
+    <Content Include="Components\Shared\TopBarButtonsListView.html" />
+    <Content Include="Components\Shared\TopBarButtonsCreateView.html" />
+    <Content Include="Components\Shared\TopBarButtonsUpdateView.html" />
     <Content Include="Components\Sidemenu\Sidemenu.html" />
     <Content Include="Components\Sidemenu\SideMenuJs.js" />
     <Content Include="Components\Toolbar\Toolbar.html" />
@@ -144,11 +147,10 @@
     <Content Include="Images\study %282%29.svg" />
     <Content Include="Images\study.svg" />
     <Content Include="Index.html" />
-    <Content Include="Js Libraries\angular-material\css\angular-material.min.css" />
-    <Content Include="Js Libraries\angular-material\js\angular-material.min.js" />
     <Content Include="Js Libraries\angularjs\js\angular-animate.min.js" />
     <Content Include="Js Libraries\angularjs\js\angular-aria.min.js" />
     <Content Include="Js Libraries\angularjs\js\angular-messages.min.js" />
+    <Content Include="Js Libraries\angularjs\js\angular-sanitize.min.js" />
     <Content Include="Js Libraries\angularjs\js\angular-ui-bootstrap.min.js" />
     <Content Include="Js Libraries\angularjs\js\angular-uuid2.js" />
     <Content Include="Js Libraries\angularjs\js\angular.min.js" />
@@ -406,6 +408,8 @@
     <Content Include="Js Libraries\moment\js\moment.min.js" />
     <Content Include="Js Libraries\popper\js\popper.min.js" />
     <Content Include="Js Libraries\tether\js\tether.min.js" />
+    <Content Include="Js Libraries\toastr\css\toastr.min.css" />
+    <Content Include="Js Libraries\toastr\js\toastr.min.js" />
     <Content Include="Scripts\Eduq.Directive.js" />
     <Content Include="Scripts\Eduq.Factory.js" />
     <Content Include="Scripts\Eduq.Helper.js" />
@@ -422,6 +426,7 @@
     <Compile Include="Components\AppUser\AppUserController.cs" />
     <Compile Include="Components\Base\BaseController.cs" />
     <Compile Include="Components\Entity\EntityController.cs" />
+    <Compile Include="Components\FieldType\FieldTypeController.cs" />
     <Compile Include="Components\Field\FieldController.cs" />
     <Compile Include="Components\Form\FormController.cs" />
     <Compile Include="Components\Sidemenu\SideMenuController.cs" />
@@ -466,18 +471,22 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Components\Shared\" />
     <Folder Include="Js Libraries\tether\css\" />
     <Folder Include="Models\" />
     <Folder Include="Views\AppUser\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Entity\" />
+    <Folder Include="Views\FieldType\" />
     <Folder Include="Views\Field\" />
     <Folder Include="Views\Form\" />
     <Folder Include="Views\SideMenu\" />
     <Folder Include="Views\View\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Eduq.Model\Eduq.Model.csproj">
+      <Project>{8181CB6F-5538-48AD-B9A7-8328B48EFEBE}</Project>
+      <Name>Eduq.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Eduq.Service\Eduq.Service.csproj">
       <Project>{87d55083-ced6-4d2b-a0e0-4194e791cba7}</Project>
       <Name>Eduq.Service</Name>
